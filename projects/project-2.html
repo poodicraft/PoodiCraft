@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PoodiCraft — Floor Is Lava</title>
+  <link rel="icon" href="../logo/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="../logo/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="../logo/favicon-64.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../logo/favicon-192.png">
+  <link rel="apple-touch-icon" href="../logo/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rubik:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <!-- ============================================================
+       עמוד פרויקט מספר 2.
+       ערכו טקסטים, שנו קישורים (href) בכפתורים, מחקו בלוקים שלא צריך.
+       תמונות (בתיקייה projects/):
+         project-2.jpg     – התמונה הראשית (גם בכרטיס בעמוד הפרויקטים)
+         project-2-1.jpg, project-2-2.jpg, project-2-3.jpg – צילומי מסך מהמשחק
+       קובץ ההורדה: downloads/FloorIsLava-1.2.apk  (כשמעלים גרסה חדשה מעדכנים כאן את הקישור ואת מספר הגרסה)
+       ============================================================ -->
+
+  <div class="bg">
+    <div class="bg-grid"></div>
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="cubes" id="cubes"></div>
+  </div>
+
+  <header class="nav" id="nav">
+    <a href="../index.html" class="logo">
+      <img src="../logo/logo.jpg" alt="PoodiCraft" class="logo-img">
+      <span class="logo-text">PoodiCraft</span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="../index.html">הערוץ</a>
+      <a href="../projects.html">פרויקטים</a>
+      <a href="#shots">צילומי מסך</a>
+      <a href="../portfolio.html" class="btn btn-small">תיק עבודות</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="תפריט">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <main id="top">
+    <article class="proj">
+
+      <div class="proj-top reveal">
+        <a href="../projects.html" class="proj-back">→ כל הפרויקטים</a>
+        <span class="proj-num">PROJECT 02</span>
+      </div>
+
+      <!-- ===== הכריכה: תמונה רחבה עם השם עליה ===== -->
+      <div class="proj-cover reveal" style="--d:.05s">
+        <div class="thumb-frame">
+          <img src="project-2.jpg" alt="" onerror="if (!this.dataset.png) { this.dataset.png = 1; this.src = 'project-2.png'; } else { this.parentNode.classList.add('empty'); }">
+          <span class="thumb-placeholder">הוסיפו תמונה ראשית<small>projects/project-2.jpg</small></span>
+        </div>
+        <div class="proj-cover-text">
+          <!-- תגיות: שנו / מחקו / הוסיפו -->
+          <div class="chips">
+            <span class="chip chip-accent">משחק לאנדרואיד</span>
+            <span class="chip">GPS · מציאות רבודה</span>
+            <span class="chip">חינם</span>
+          </div>
+          <!-- שם הפרויקט. המילה בתוך accent צבועה בכחול -->
+          <h1><span dir="ltr"><span class="accent">Floor Is</span> Lava</span></h1>
+          <p class="proj-tagline">הרצפה היא לבה — במציאות. יוצאים החוצה, מקבלים אזור בטוח על המפה, ורצים אליו לפני שהלבה מגיעה.</p>
+        </div>
+      </div>
+
+      <!-- ===== כפתורים: שנו טקסט ו-href, מחקו מה שלא צריך ===== -->
+      <div class="proj-actions reveal" style="--d:.15s">
+        <a href="../downloads/FloorIsLava-1.2.apk" download class="btn btn-primary">
+          <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3a1 1 0 0 1 1 1v9.6l2.3-2.3a1 1 0 1 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 1 1 1.4-1.4L11 13.6V4a1 1 0 0 1 1-1zM5 18a1 1 0 0 1 1 1v1h12v-1a1 1 0 1 1 2 0v2a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1z"/></svg>
+          להורדה לאנדרואיד (APK)
+        </a>
+        <a href="https://github.com/poodicraft/The-Floor-Is-Lava" target="_blank" rel="noopener" class="btn btn-ghost">הקוד ב-GitHub</a>
+      </div>
+
+      <div class="proj-layout">
+
+        <!-- ===== עמודה ראשית ===== -->
+        <div class="proj-main">
+
+          <section class="proj-block reveal">
+            <h2>מה זה?</h2>
+            <p>משחק לאנדרואיד שמשחקים בו בחוץ, ברגליים. יוצאים לאזור פתוח, לוחצים START, והמשחק מסמן אזור בטוח ירוק על המפה — איפשהו בקרבת מקום. מכאן הרצפה היא לבה: צריך להגיע לאזור לפני שהזמן נגמר, והלבה זוחלת פנימה מקצוות המסך ככל שנשאר פחות זמן.</p>
+            <p>האזור הבטוח לא נבחר באקראי — המשחק בודק אותו מול מפות OpenStreetMap כדי לוודא שהוא פנוי מבניינים, מים, כבישים וגדרות, כך שבאמת אפשר להגיע אליו ברגל.</p>
+            <p>אפשר לשחק לבד או להתחרות מול חבר, ויש לוחות שיאים עם הניצחונות של כולם.</p>
+          </section>
+
+          <section class="proj-block reveal">
+            <h2>מה יש בפנים</h2>
+            <!-- אריחי מאפיינים: שנו את האימוג׳י, הכותרת והמשפט. מחקו או שכפלו אריח -->
+            <div class="features">
+              <div class="feature"><div class="feature-ico">🗺️</div><h3>אזור בטוח אמיתי</h3><p>נבדק מול מפות OpenStreetMap — בלי בניינים, מים, כבישים או גדרות בדרך.</p></div>
+              <div class="feature"><div class="feature-ico">🌋</div><h3>הלבה מתקרבת</h3><p>טיימר שרץ, והלבה זוחלת פנימה מקצוות המסך עד שהיא בולעת אתכם.</p></div>
+              <div class="feature"><div class="feature-ico">📷</div><h3>מצב מציאות רבודה</h3><p>לא מוצאים את האזור? מכוונים את המצלמה מסביב וסמן צף מראה בדיוק איפה הוא.</p></div>
+              <div class="feature"><div class="feature-ico">⚔️</div><h3>מירוץ מול חבר</h3><p>ביחד? אותו אזור בדיוק. רחוקים אחד מהשני? כל אחד מקבל אזור משלו באותו מרחק בדיוק.</p></div>
+              <div class="feature"><div class="feature-ico">🏆</div><h3>לוחות שיאים</h3><p>ניצחונות, אחוז ניצחון ורצף הניצחונות הטוב ביותר — מול כל השחקנים.</p></div>
+              <div class="feature"><div class="feature-ico">🎚️</div><h3>שלוש רמות קושי</h3><p>קל, בינוני וקשה. אפשר גם לשחק סולו במצב לא מקוון.</p></div>
+            </div>
+          </section>
+
+          <section class="proj-block reveal">
+            <h2>איך מתחילים</h2>
+            <!-- שלבים ממוספרים: הוסיפו / מחקו שורות li -->
+            <ol class="steps">
+              <li>מורידים את קובץ ה-APK מהכפתור למעלה ומתקינים (המשחק לא בחנות, אז צריך לאשר התקנה ממקור לא מוכר).</li>
+              <li>נותנים למשחק הרשאת מיקום מדויק — בלעדיה אי אפשר למקם את האזור הבטוח ולזהות שהגעתם.</li>
+              <li>יוצאים החוצה לשטח פתוח ובטוח, ולוחצים PLAY ואז START.</li>
+              <li>הולכים לאזור הירוק לפני שהזמן נגמר. אם קשה למצוא אותו — פותחים את מצב המצלמה.</li>
+            </ol>
+            <p style="margin-top:14px"><strong>⚠️ שימו לב לאן אתם הולכים.</strong> אף ניצחון לא שווה ריצה לכביש, לשטח פרטי או לכל מקום לא בטוח.</p>
+          </section>
+
+          <section class="proj-block reveal" id="shots">
+            <h2>צילומי מסך</h2>
+            <!-- צילומי מסך: project-2-1.jpg, project-2-2.jpg, project-2-3.jpg (מה שאין — נעלם לבד).
+                 עוד תמונות? שכפלו שורת shots-thumb ושנו את המספר בשני המקומות. -->
+            <div class="shots-viewer">
+              <div class="shots-stage">
+                <button type="button" class="shots-arrow prev" aria-label="הקודם"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M9 6l6 6-6 6"/></svg></button>
+                <div class="thumb-frame shots-main">
+                  <img src="" alt="צילום מסך">
+                  <span class="thumb-placeholder">הוסיפו צילומי מסך<small>projects/project-2-1.jpg, project-2-2.jpg …</small></span>
+                </div>
+                <button type="button" class="shots-arrow next" aria-label="הבא"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M15 6l-6 6 6 6"/></svg></button>
+                <span class="shots-counter">1 / 1</span>
+                <span class="shots-hint">לחיצה מגדילה</span>
+              </div>
+              <div class="shots-thumbs">
+                <button type="button" class="shots-thumb" data-src="project-2-1.jpg"><img src="project-2-1.jpg" alt=""></button>
+                <button type="button" class="shots-thumb" data-src="project-2-2.jpg"><img src="project-2-2.jpg" alt=""></button>
+                <button type="button" class="shots-thumb" data-src="project-2-3.jpg"><img src="project-2-3.jpg" alt=""></button>
+              </div>
+            </div>
+          </section>
+
+          <!-- סרטון מיוטיוב (רשות): מחקו את שורות ההערה ושימו את מזהה הסרטון במקום XXXXXXXXXXX
+          <section class="proj-block reveal">
+            <h2>סרטון</h2>
+            <div class="proj-video">
+              <iframe src="https://www.youtube.com/embed/XXXXXXXXXXX" title="סרטון" allowfullscreen loading="lazy"></iframe>
+            </div>
+          </section>
+          -->
+
+        </div>
+
+        <!-- ===== עמודת פרטים (צד) ===== -->
+        <aside class="proj-side reveal" style="--d:.2s">
+          <div class="info-card">
+            <h3>פרטים</h3>
+            <!-- שורות מידע: שנו / מחקו / הוסיפו זוגות dt+dd -->
+            <dl class="info-list">
+              <dt>סוג</dt><dd>משחק GPS בחוץ</dd>
+              <dt>פלטפורמה</dt><dd>אנדרואיד 8.0 ומעלה</dd>
+              <dt>גרסה</dt><dd dir="ltr">1.2</dd>
+              <dt>גודל</dt><dd>12MB</dd>
+              <dt>מחיר</dt><dd>חינם</dd>
+              <dt>שחקנים</dt><dd>יחיד או יותר</dd>
+            </dl>
+            <a href="../downloads/FloorIsLava-1.2.apk" download class="btn btn-primary">
+              <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3a1 1 0 0 1 1 1v9.6l2.3-2.3a1 1 0 1 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 1 1 1.4-1.4L11 13.6V4a1 1 0 0 1 1-1zM5 18a1 1 0 0 1 1 1v1h12v-1a1 1 0 1 1 2 0v2a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1z"/></svg>
+              להורדה (APK, 12MB)
+            </a>
+          </div>
+
+          <div class="info-card">
+            <h3>קישורים</h3>
+            <!-- קישורים לפרויקט: שנו טקסט ו-href, מחקו מה שלא צריך -->
+            <div class="info-links">
+              <a href="https://github.com/poodicraft/The-Floor-Is-Lava" target="_blank" rel="noopener">💻 הקוד ב-GitHub</a>
+              <a href="https://www.youtube.com/@PoodiCraft" target="_blank" rel="noopener"><svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg>הערוץ ביוטיוב</a>
+              <button type="button" class="btn btn-ghost" id="discordBtn" style="margin-top:6px"><svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.6 1.2a18.3 18.3 0 0 0-5.6 0L8.6 3a19.7 19.7 0 0 0-4.9 1.5C.6 9.1-.3 13.6.1 18a19.9 19.9 0 0 0 6 3l1.3-2a12.9 12.9 0 0 1-2-1l.5-.4a14.2 14.2 0 0 0 12.2 0l.5.4a12.9 12.9 0 0 1-2 1l1.3 2a19.8 19.8 0 0 0 6-3c.5-5.1-.8-9.6-3.6-13.6zM8 15.3c-1.2 0-2.2-1.1-2.2-2.4S6.8 10.5 8 10.5s2.2 1.1 2.2 2.4-1 2.4-2.2 2.4zm8 0c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4z"/></svg>שאלות? בדיסקורד</button>
+            </div>
+          </div>
+        </aside>
+
+      </div>
+
+      <!-- ===== הקודם / הבא ===== -->
+      <nav class="proj-nav reveal" aria-label="פרויקטים נוספים">
+        <a href="project-1.html" class="proj-nav-card prev">
+          <div class="thumb-frame">
+            <img src="project-1.jpg" alt="" onerror="this.parentNode.classList.add('empty')">
+            <span class="thumb-placeholder">?</span>
+          </div>
+          <div><small>הפרויקט הקודם</small><strong dir="ltr">Poodi's Adventure</strong></div>
+        </a>
+        <a href="project-3.html" class="proj-nav-card next">
+          <div class="thumb-frame">
+            <img src="project-3.jpg" alt="" onerror="this.parentNode.classList.add('empty')">
+            <span class="thumb-placeholder">?</span>
+          </div>
+          <div><small>הפרויקט הבא</small><strong>שם הפרויקט 3</strong></div>
+        </a>
+      </nav>
+      <div class="proj-nav-all reveal">
+        <a href="../projects.html" class="btn btn-ghost">לכל הפרויקטים</a>
+      </div>
+
+    </article>
+  </main>
+
+  <footer class="footer">
+    <img src="../logo/logo.jpg" alt="" class="logo-img small">
+    <span>&copy; <span id="year"></span> PoodiCraft</span>
+    <span class="footer-sep">·</span>
+    <a href="../projects.html">כל הפרויקטים</a>
+    <span class="footer-sep">·</span>
+    <a href="../index.html">הערוץ</a>
+  </footer>
+
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose" aria-label="סגירה">&times;</button>
+    <img src="" alt="" id="lightboxImg">
+  </div>
+
+  <script src="../script.js"></script>
+  <script src="../sounds.js"></script>
+</body>
+</html>

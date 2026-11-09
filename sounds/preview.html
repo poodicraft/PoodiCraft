@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>בחירת צלילים</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg: #050c1f; --surface: rgba(16,34,74,.6); --border: rgba(96,165,250,.25); --blue: #3b82f6; --blue-light: #60a5fa; --text: #e8f0ff; --muted: #8fa6d1; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Rubik', system-ui, sans-serif; background: var(--bg); color: var(--text); padding: 32px 20px 80px; }
+    h1 { font-size: 1.6rem; margin-bottom: 6px; }
+    p { color: var(--muted); margin-bottom: 20px; line-height: 1.6; }
+    .bar { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; flex-wrap: wrap; }
+    .bar label { color: var(--muted); }
+    input[type=range] { width: 200px; accent-color: var(--blue); }
+    h2 { font-size: 1.05rem; color: var(--blue-light); margin: 28px 0 10px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+    button { font: inherit; font-weight: 500; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px 10px; cursor: pointer; transition: border-color .2s, transform .15s, background .2s; }
+    button:hover { border-color: var(--blue-light); transform: translateY(-2px); }
+    button.playing { background: var(--blue); border-color: var(--blue); color: #fff; }
+    .current button { border-color: var(--blue-light); }
+    .now { position: fixed; bottom: 0; left: 0; right: 0; padding: 12px 20px; background: rgba(5,12,31,.95); border-top: 1px solid var(--border); color: var(--muted); }
+    .now b { color: var(--text); }
+  </style>
+</head>
+<body>
+  <h1>בחירת צלילים</h1>
+  <p>לחצו על כפתור כדי לשמוע. אלה כל הצלילים בחבילה. כשמצאתם צליל שאתם אוהבים,
+     אמרו לי את השם שלו ולאיזה שימוש (לחיצה / העתקה־פתיחה) ואחליף.</p>
+  <div class="bar">
+    <label for="vol">עוצמה</label>
+    <input type="range" id="vol" min="0" max="1" step="0.05" value="0.35">
+    <span id="volVal">0.35</span>
+    <span style="color:var(--muted)">(באתר עכשיו: 0.35)</span>
+  </div>
+
+  <h2>מה שבאתר עכשיו</h2>
+  <div class="grid current">
+    <button data-src="click.wav">click.wav (לחיצה)</button>
+    <button data-src="pop.wav">pop.wav (העתקה / פתיחה)</button>
+  </div>
+
+  <h2>click</h2>
+  <div class="grid" data-prefix="click" data-count="5"></div>
+  <h2>mouse</h2>
+  <div class="grid" id="mouse"></div>
+  <h2>rollover</h2>
+  <div class="grid" data-prefix="rollover" data-count="6"></div>
+  <h2>switch</h2>
+  <div class="grid" data-prefix="switch" data-count="38"></div>
+
+  <div class="now">מנגן: <b id="now">—</b></div>
+
+  <script>
+    const vol = document.getElementById('vol'), volVal = document.getElementById('volVal'), now = document.getElementById('now');
+    vol.addEventListener('input', () => volVal.textContent = vol.value);
+
+    document.querySelectorAll('.grid[data-prefix]').forEach(g => {
+      const p = g.dataset.prefix, n = +g.dataset.count;
+      for (let i = 1; i <= n; i++) {
+        const b = document.createElement('button');
+        b.dataset.src = `kenney-ui-audio/${p}${i}.ogg`;
+        b.textContent = `${p}${i}`;
+        g.appendChild(b);
+      }
+    });
+    ['mouseclick1', 'mouserelease1'].forEach(n => {
+      const b = document.createElement('button');
+      b.dataset.src = `kenney-ui-audio/${n}.ogg`; b.textContent = n;
+      document.getElementById('mouse').appendChild(b);
+    });
+
+    let current = null;
+    document.addEventListener('click', (e) => {
+      const b = e.target.closest('button[data-src]');
+      if (!b) return;
+      if (current) current.pause();
+      const a = new Audio(b.dataset.src);
+      a.volume = +vol.value;
+      current = a;
+      document.querySelectorAll('button.playing').forEach(x => x.classList.remove('playing'));
+      b.classList.add('playing');
+      now.textContent = b.textContent;
+      a.addEventListener('ended', () => b.classList.remove('playing'));
+      a.play().catch(() => {});
+    });
+  </script>
+</body>
+</html>
